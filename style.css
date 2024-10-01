@@ -1,0 +1,54 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+/* Container Styling */
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Authentication and Input Sections */
+.auth, .agenda-input {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* Agenda List Styling */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: #f8f8f8;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
