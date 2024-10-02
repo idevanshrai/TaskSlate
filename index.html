@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic To-Do List</title>
+    <title>Collaborative Agenda List</title>
     <link rel="stylesheet" href="style.css">
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
@@ -12,7 +12,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Agenda List</h1>
+        <h1>Collaborative Agenda List</h1>
+
+        <!-- Error Message Section -->
+        <div id="errorMessage" class="error-message"></div>
 
         <!-- Authentication Section -->
         <div class="auth">
@@ -20,7 +23,33 @@
             <input type="password" id="password" placeholder="Password">
             <button id="signup">Sign Up</button>
             <button id="login">Login</button>
-            <button id="logout">Logout</button>
+            <button id="logout" style="display: none;">Logout</button>
+        </div>
+
+        <!-- Shared List Creation Section -->
+        <div class="shared-list-creation">
+            <h2>Create New Shared List</h2>
+            <input type="text" id="listName" placeholder="List Name">
+            <button id="createList">Create Shared List</button>
+        </div>
+
+        <!-- Shared List Selection Section -->
+        <div class="shared-list-selection">
+            <h2>Select Shared List</h2>
+            <select id="sharedListSelect">
+                <option value="" disabled selected>Select a list</option>
+            </select>
+        </div>
+
+        <!-- Invitation Section for Collaborators -->
+        <div class="invite-collaborators">
+            <h2>Invite Collaborators</h2>
+            <input type="email" id="collaboratorEmail" placeholder="Collaborator's Email">
+            <select id="collaboratorPermission">
+                <option value="view">View Only</option>
+                <option value="edit">Edit</option>
+            </select>
+            <button id="inviteCollaborator">Invite</button>
         </div>
 
         <!-- Agenda Input Section -->
