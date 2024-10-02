@@ -3,40 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskSlate</title>
-    <!--Linking the CSS file here-->
+    <title>Dynamic To-Do List</title>
     <link rel="stylesheet" href="style.css">
-
-    <!--FireBase SDK Packaages-->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script> <!--To use firebase-->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script><!--To use the user authenticatin function-->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script><!--To use the database firestone-->
-
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
-    <!--Main header -->
     <div class="container">
-        <h1>TaskSlate</h1>
+        <h1>Agenda List</h1>
 
-    <!--Login or Authentication Page-->
-    <div class="auth">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button id="login">Login</button>
-    <button id="signuo">Sign Up</button>
-    <button id="logout">Log Out</button>
+        <!-- Authentication Section -->
+        <div class="auth">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <button id="signup">Sign Up</button>
+            <button id="login">Login</button>
+            <button id="logout">Logout</button>
+        </div>
+
+        <!-- Agenda Input Section -->
+        <div class="agenda-input">
+            <input type="text" id="agendaItem" placeholder="Add a new item...">
+            <button id="addItem">Add</button>
+        </div>
+
+        <!-- Agenda List Section -->
+        <ul id="agendaList"></ul>
     </div>
 
-    <!--Agenda Input-->
-    <div class="agenda-input">
-        <input type="text" id="text" placeholder="Enter your text here!">
-        <button id="addItem">Add Item</button>
-    </div>
-
-    <ul id="agendaList"></ul>
-    </div>
-
-    <!--Linking the JS file here-->
-    <script src="app.js"></script> 
+    <!-- Link to your custom JavaScript file -->
+    <script src="app.js"></script>
 </body>
 </html>
