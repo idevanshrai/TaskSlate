@@ -1,4 +1,4 @@
-//Linking the backend with Firebase. We'll use Firestone database and authentication service from FireBade
+//Linking the backend with Firebase.
 
 //Firebase confi
 const firebaseConfig = {
@@ -133,7 +133,7 @@ createListButton.addEventListener('click', () => {
         })
         .catch(error => {
             console.error('Error creating shared list:', error.message);
-            showError(error.message); // Display error if list creation fails
+            showError(error.message); 
         });
     } else {
         showError('Invalid list name or user not authenticated');
@@ -161,7 +161,7 @@ function loadSharedLists() {
 sharedListSelect.addEventListener('change', () => {
     currentListId = sharedListSelect.value;
     loadSharedListItems(currentListId);
-    document.querySelector('.invite-collaborators').style.display = 'block'; // Show the invite section when a list is selected
+    document.querySelector('.invite-collaborators').style.display = 'block'; 
 });
 
 // Load items from a specific shared list
