@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskSlate - Collaborative Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+</head>
+<body>
+    <div id="stars1" class="stars"></div>
+    <div id="stars2" class="stars"></div>
+    <div id="stars3" class="stars"></div>
+
+    <div id="splash-screen">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+                <div class="square"></div>
+            </div>
+            <h1>TaskSlate</h1>
+        </div>
+        <div class="spinner"></div>
+        <p class="loading-text">Loading your workspace...</p>
+    </div>
+
+    <div id="app-container" class="container">
+        <header class="app-header">
+            <h1>TaskSlate</h1>
+            <div class="user-controls">
+                <p class="welcome-message" id="welcomeMessage"></p>
+                <button id="logout" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </header>
+
+        <div id="errorMessage" class="error-message"></div>
+
+        <div id="auth-box" class="auth-box">
+            <h2>Welcome to TaskSlate</h2>
+            <p class="auth-subtitle">Your collaborative workspace</p>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            
+            <div class="auth-actions">
+                <button id="login" class="btn-primary"><i class="fas fa-sign-in-alt"></i> Login</button>
+                <button id="signup" class="btn-secondary"><i class="fas fa-user-plus"></i> Sign Up</button>
+            </div>
+        </div>
+
+        <div id="main-content">
+            <div class="workspace-container">
+                <div class="sidebar">
+                    <div class="card list-creation">
+                        <h2>Create New Workspace</h2>
+                        <div class="form-group">
+                            <input type="text" id="listName" placeholder="Workspace name...">
+                        </div>
+                        <button id="createList" class="btn-primary"><i class="fas fa-plus"></i> Create</button>
+                    </div>
+
+                    <div class="card list-selection">
+                        <h2>Your Workspaces</h2>
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="listSearch" placeholder="Search workspaces...">
+                        </div>
+                        <div class="lists-container">
+                            <select id="sharedListSelect" size="5">
+                                <option value="" disabled>Your workspaces will appear here</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-content-area">
+                    <div id="active-list-area">
+                        <div class="card workspace-info">
+                            <h2 id="currentWorkspaceName">Select a workspace</h2>
+                            <p class="workspace-status" id="workspaceStatus"></p>
+                        </div>
+
+                        <div class="card editor-container">
+                            <h2>Add New Content</h2>
+                            <div id="editor-container"></div>
+                            <button id="addItem" class="btn-primary"><i class="fas fa-plus"></i> Add to Workspace</button>
+                        </div>
+
+                        <div class="card collaboration-section">
+                            <h2>Collaboration</h2>
+                            <div class="form-group">
+                                <label for="collaboratorEmail">Invite by Email</label>
+                                <input type="email" id="collaboratorEmail" placeholder="Collaborator's email">
+                            </div>
+                            <div class="form-group">
+                                <label for="collaboratorPermission">Permission Level</label>
+                                <select id="collaboratorPermission">
+                                    <option value="view">Can View</option>
+                                    <option value="edit">Can Edit</option>
+                                </select>
+                            </div>
+                            <button id="inviteCollaborator" class="btn-primary"><i class="fas fa-user-plus"></i> Invite</button>
+                            
+                            <div class="collaborators-list">
+                                <h3>Current Collaborators</h3>
+                                <ul id="collaboratorsList"></ul>
+                            </div>
+                        </div>
+
+                        <div class="card content-list">
+                            <h2>Workspace Content</h2>
+                            <div class="content-actions">
+                                <div class="search-container">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="contentSearch" placeholder="Search content...">
+                                </div>
+                                <button id="refreshContent" class="btn-icon" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+                            </div>
+                            <ul id="agendaList">
+                                <li class="empty">Select a workspace to view content</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="fab-container">
+  <button id="themeToggle" class="fab" title="Toggle theme">
+    <i class="fas fa-moon"></i>
+  </button>
+  <button id="newWorkspaceFab" class="fab primary" title="New workspace">
+    <i class="fas fa-plus"></i>
+  </button>
+</div>
+    <script src="app.js"></script>
+</body>
+</html>
