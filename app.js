@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Firebase Configuration ---
     // IMPORTANT: Replace with your actual Firebase project configuration
     const firebaseConfig = {
-    apiKey: "AIzaSyAOfQSE2aEqPAx5hTgOhJMTCDZEsc3gPK4",
-    authDomain: "taskslate-82955.firebaseapp.com",
-    projectId: "taskslate-82955",
-    storageBucket: "taskslate-82955.appspot.com",
-    messagingSenderId: "798578522594",
-    appId: "1:798578522594:web:335b09cc037b62f7d2e1bb",
-    measurementId: "G-EN5LHF07W8"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
   };
 
     // Initialize Firebase
